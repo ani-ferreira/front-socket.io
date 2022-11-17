@@ -1,28 +1,24 @@
-
 import io from "socket.io-client"
 import { useEffect } from "react"
 
 
-
-//paso el url del socket del server
-//conexion con el socket server 
+//paso el url del socket del server para crear una conexion 
 //tenemos una conexion para emit o listen to events 
 const socket = io.connect("http://localhost:3001")
 
 function App() {
 
-  //utilizamos esa conexion para enviar/emit un mensaje
-  //va a ser recibido por el back, 
-  //y va a emitir otro mensaje para q sea recibido
+  //ENVIAR/EMIT DATA AL BACK 
   //el back es necesario como layer para conectar los events
 
 const sendMessage = () =>{
   //le damos nombre al evento q emitimos
-  //y podemos mandar data 
+  //y enviamos data 
   //el back tiene q escuchar el evento con este nombre para recibirlo
 socket.emit("send-message", {message: "Hello"})
 }
 
+//RECIBIR DESDE EL BACK
 //esta funcion es llamada siempre q se recibe un mensaje
 //por eso [socket]
 useEffect(()=>{
